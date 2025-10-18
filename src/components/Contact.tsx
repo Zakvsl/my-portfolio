@@ -164,7 +164,7 @@ export const Contact = () => {
 
             <div className="space-y-4">
               <motion.a
-                href="mailto:dimas@example.com"
+                href="mailto:dndimas77@gmail.com"
                 whileHover={{ scale: 1.05, x: 10 }}
                 className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-primary rounded-lg hover:bg-secondary/10 dark:hover:bg-secondary/10 transition-all group"
               >
@@ -176,13 +176,13 @@ export const Contact = () => {
                     Email
                   </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    dimas@example.com
+                    dndimas77@gmail.com
                   </p>
                 </div>
               </motion.a>
 
               <motion.a
-                href="https://wa.me/6281234567890"
+                href="https://wa.me/6287822827881"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, x: 10 }}
@@ -196,7 +196,7 @@ export const Contact = () => {
                     WhatsApp
                   </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    +62 812-3456-7890
+                    +62 878-2282-7881
                   </p>
                 </div>
               </motion.a>

@@ -3,14 +3,10 @@ import { FiDownload } from "react-icons/fi";
 
 export const About = () => {
   const skills = [
-    "React.js",
-    "TypeScript",
-    "Three.js",
-    "Tailwind CSS",
-    "Node.js",
-    "Python",
+    "Web Development",
+    "Basic Ethical Hacking",
+    "Problem Solving",
     "Machine Learning",
-    "Git",
   ];
 
   return (
@@ -63,9 +59,9 @@ export const About = () => {
             </h3>
 
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              I'm a passionate web developer with expertise in creating modern,
-              interactive, and responsive web applications. I specialize in
-              React.js, Three.js for 3D graphics, and have a growing interest in
+              I'm a passionate web developer focused on building modern,
+              interactive, and responsive web applications. I have experience
+              working with Laravel (PHP) and React, and a growing interest in
               Machine Learning.
             </p>
 

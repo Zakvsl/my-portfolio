@@ -48,18 +48,18 @@ export const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: FiGithub, href: "https://github.com/kuwuk", label: "GitHub" },
+    { icon: FiGithub, href: "https://github.com/Zakvsl", label: "GitHub" },
     {
       icon: FiLinkedin,
-      href: "https://linkedin.com/in/kuwuk",
+      href: "www.linkedin.com/in/muhamad-dimas-nurzaky-119802251",
       label: "LinkedIn",
     },
     {
       icon: FiInstagram,
-      href: "https://instagram.com/kuwuk",
+      href: "https://www.instagram.com/dmsnurzaky",
       label: "Instagram",
     },
-    { icon: FiMail, href: "mailto:dimas@example.com", label: "Email" },
+    { icon: FiMail, href: "mailto:dndimas77@gmail.com", label: "Email" },
   ];
 
   return (
@@ -69,7 +69,8 @@ export const Footer = () => {
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-bold mb-4 font-display">
-              <span className="text-secondary">K</span>uwuk
+              <span> M Dimas Nurzaky</span>
+              <span className="text-secondary">.</span>
             </h3>
             <p className="text-gray-400">
               Building digital experiences with passion and creativity.
@@ -116,12 +117,9 @@ export const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-gray-700 pt-8 flex justify-center items-center">
+          <p className="text-gray-400 text-sm text-center">
             © {new Date().getFullYear()} M Dimas Nurzaky. All rights reserved.
-          </p>
-          <p className="text-gray-400 text-sm">
-            Built with React, Three.js & Tailwind CSS
           </p>
         </div>
       </div>
