@@ -96,8 +96,8 @@ export const About = () => {
 
             {/* CTA Button */}
             <motion.a
-              href="/public/cv.pdf"
-              download
+              href="/cv.pdf"
+              download="cv.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-2 px-6 py-3 bg-secondary hover:bg-secondary-dark text-primary-dark font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-secondary/50 mt-6"
