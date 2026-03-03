@@ -1,8 +1,41 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
-import { projects } from "../data/projects";
+import { projects as staticProjects } from "../data/projects";
+import type { Project } from "../data/projects";
+import { useLanguage } from "../context/LanguageContext";
+import { db, isFirebaseConfigured } from "../lib/firebase";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
 export const Projects = () => {
+  const { t } = useLanguage();
+  const [projects, setProjects] = useState<Project[]>(staticProjects);
+
+  useEffect(() => {
+    if (!isFirebaseConfigured || !db) return;
+    const fetchProjects = async () => {
+      try {
+        const q = query(collection(db!, "projects"), orderBy("id", "asc"));
+        const snapshot = await getDocs(q);
+        if (!snapshot.empty) {
+          const data = snapshot.docs.map((doc) => ({
+            id: doc.data().id,
+            title: doc.data().title,
+            description: doc.data().description,
+            image: doc.data().image,
+            techStack: doc.data().techStack,
+            liveUrl: doc.data().liveUrl,
+            githubUrl: doc.data().githubUrl,
+          })) as Project[];
+          setProjects(data);
+        }
+      } catch {
+        // Use static data if Firebase fails
+      }
+    };
+    fetchProjects();
+  }, []);
+
   return (
     <section id="projects" className="py-20 bg-gray-50 dark:bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +47,8 @@ export const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-primary-dark dark:text-white mb-4 font-display">
-            Featured <span className="text-secondary">Projects</span>
+            {t.projects.title}{" "}
+            <span className="text-secondary">{t.projects.titleHighlight}</span>
           </h2>
           <div className="w-24 h-1 bg-secondary mx-auto rounded-full" />
         </motion.div>
@@ -74,7 +108,7 @@ export const Projects = () => {
                       className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary-dark text-primary-dark font-medium rounded-lg transition-colors text-sm"
                     >
                       <FiExternalLink size={16} />
-                      Live Demo
+                      {t.projects.viewLive}
                     </motion.a>
                   )}
 
@@ -88,7 +122,7 @@ export const Projects = () => {
                       className="flex items-center gap-2 px-4 py-2 border-2 border-secondary text-secondary hover:bg-secondary hover:text-primary-dark font-medium rounded-lg transition-all text-sm"
                     >
                       <FiGithub size={16} />
-                      Code
+                      {t.projects.viewCode}
                     </motion.a>
                   )}
                 </div>

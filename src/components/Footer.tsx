@@ -7,8 +7,10 @@ import {
   FiMail,
   FiArrowUp,
 } from "react-icons/fi";
+import { useLanguage } from "../context/LanguageContext";
 
 export const Footer = () => {
+  const { t } = useLanguage();
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
 
@@ -119,7 +121,7 @@ export const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-gray-700 pt-8 flex justify-center items-center">
           <p className="text-gray-400 text-sm text-center">
-            © {new Date().getFullYear()} M Dimas Nurzaky. All rights reserved.
+            © {new Date().getFullYear()} M Dimas Nurzaky. {t.footer.rights}
           </p>
         </div>
       </div>

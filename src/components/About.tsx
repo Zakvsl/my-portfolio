@@ -1,12 +1,16 @@
 import { motion } from "framer-motion";
 import { FiDownload } from "react-icons/fi";
+import { useLanguage } from "../context/LanguageContext";
 
 export const About = () => {
+  const { t } = useLanguage();
   const skills = [
     "Web Development",
     "Basic Ethical Hacking",
     "Problem Solving",
     "Machine Learning",
+    "Teamwork",
+    "Management Project",
   ];
 
   return (
@@ -20,7 +24,8 @@ export const About = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-primary-dark dark:text-white mb-4 font-display">
-            About <span className="text-secondary">Me</span>
+            {t.about.title}{" "}
+            <span className="text-secondary">{t.about.titleHighlight}</span>
           </h2>
           <div className="w-24 h-1 bg-secondary mx-auto rounded-full" />
         </motion.div>
@@ -98,7 +103,7 @@ export const About = () => {
               className="inline-flex items-center gap-2 px-6 py-3 bg-secondary hover:bg-secondary-dark text-primary-dark font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-secondary/50 mt-6"
             >
               <FiDownload size={20} />
-              Download CV
+              {t.about.downloadCv}
             </motion.a>
           </motion.div>
         </div>

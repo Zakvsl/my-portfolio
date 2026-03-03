@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FiMail, FiUser, FiMessageSquare, FiSend } from "react-icons/fi";
-// import emailjs from 'emailjs-com';
+import emailjs from "emailjs-com";
+import { useLanguage } from "../context/LanguageContext";
 
 export const Contact = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,15 +20,29 @@ export const Contact = () => {
     setStatus("sending");
 
     try {
-      // Replace with your EmailJS credentials
-      // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData, 'YOUR_PUBLIC_KEY')
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-      // Simulating email send for demo
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      if (serviceId && templateId && publicKey) {
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            message: formData.message,
+            to_name: "M Dimas Nurzaky",
+          },
+          publicKey,
+        );
+      } else {
+        // Fallback: simulate send if EmailJS not configured
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+      }
 
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
-
       setTimeout(() => setStatus("idle"), 3000);
     } catch {
       setStatus("error");
@@ -45,12 +61,12 @@ export const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-primary-dark dark:text-white mb-4 font-display">
-            Get In <span className="text-secondary">Touch</span>
+            {t.contact.title}{" "}
+            <span className="text-secondary">{t.contact.titleHighlight}</span>
           </h2>
           <div className="w-24 h-1 bg-secondary mx-auto rounded-full" />
           <p className="mt-6 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Have a project in mind or just want to say hi? Feel free to reach
-            out!
+            {t.contact.subtitle}
           </p>
         </motion.div>
 
@@ -67,7 +83,7 @@ export const Contact = () => {
                 <FiUser className="absolute left-4 top-4 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Your Name"
+                  placeholder={t.contact.name}
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -81,7 +97,7 @@ export const Contact = () => {
                 <FiMail className="absolute left-4 top-4 text-gray-400" />
                 <input
                   type="email"
-                  placeholder="Your Email"
+                  placeholder={t.contact.email}
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -94,7 +110,7 @@ export const Contact = () => {
               <div className="relative">
                 <FiMessageSquare className="absolute left-4 top-4 text-gray-400" />
                 <textarea
-                  placeholder="Your Message"
+                  placeholder={t.contact.message}
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
@@ -113,11 +129,11 @@ export const Contact = () => {
                 className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-secondary hover:bg-secondary-dark text-primary-dark font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-secondary/50 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {status === "sending" ? (
-                  "Sending..."
+                  t.contact.sending
                 ) : (
                   <>
                     <FiSend size={20} />
-                    Send Message
+                    {t.contact.send}
                   </>
                 )}
               </motion.button>
@@ -128,7 +144,7 @@ export const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-green-500 text-center font-medium"
                 >
-                  Message sent successfully! 🎉
+                  {t.contact.success}
                 </motion.p>
               )}
 
@@ -138,7 +154,7 @@ export const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-red-500 text-center font-medium"
                 >
-                  Oops! Something went wrong. Please try again.
+                  {t.contact.error}
                 </motion.p>
               )}
             </form>
@@ -154,11 +170,10 @@ export const Contact = () => {
           >
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-primary-dark dark:text-white font-display">
-                Let's Connect
+                {t.contact.connectTitle}
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                I'm always open to discussing new projects, creative ideas, or
-                opportunities to be part of your visions.
+                {t.contact.connectDesc}
               </p>
             </div>
 

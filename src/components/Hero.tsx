@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { Scene3D } from "./Scene3D";
+import { useLanguage } from "../context/LanguageContext";
 
 export const Hero = () => {
+  const { t } = useLanguage();
+
   const scrollToProjects = () => {
     document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -29,7 +32,7 @@ export const Hero = () => {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-secondary text-lg md:text-xl mb-4 tracking-wider uppercase"
           >
-            Portfolio
+            {t.hero.portfolio}
           </motion.p>
 
           <motion.h1
@@ -47,7 +50,7 @@ export const Hero = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="text-xl md:text-2xl text-gray-300 mb-8"
           >
-            Web Developer | ML Enthusiast
+            {t.hero.role}
           </motion.p>
 
           <motion.button
@@ -59,7 +62,7 @@ export const Hero = () => {
             onClick={scrollToProjects}
             className="px-8 py-4 bg-secondary hover:bg-secondary-dark text-primary-dark font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-secondary/50"
           >
-            View My Work
+            {t.hero.viewWork}
           </motion.button>
         </motion.div>
       </div>

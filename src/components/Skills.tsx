@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { skills } from "../data/skills";
+import { useLanguage } from "../context/LanguageContext";
 
 export const Skills = () => {
+  const { t } = useLanguage();
   const categories = {
     frontend: skills.filter((s) => s.category === "frontend"),
     backend: skills.filter((s) => s.category === "backend"),
@@ -20,7 +22,8 @@ export const Skills = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-primary-dark dark:text-white mb-4 font-display">
-            My <span className="text-secondary">Skills</span>
+            {t.skills.title}{" "}
+            <span className="text-secondary">{t.skills.titleHighlight}</span>
           </h2>
           <div className="w-24 h-1 bg-secondary mx-auto rounded-full" />
         </motion.div>

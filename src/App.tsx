@@ -1,26 +1,26 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
-import { Navbar } from "./components/Navbar";
-import { Hero } from "./components/Hero";
-import { About } from "./components/About";
-import { Skills } from "./components/Skills";
-import { Projects } from "./components/Projects";
-import { Contact } from "./components/Contact";
-import { Footer } from "./components/Footer";
-import { ChatBot } from "./components/ChatBot";
+import { LanguageProvider } from "./context/LanguageContext";
+import { Home } from "./pages/Home";
+import { Dashboard } from "./pages/Dashboard";
+import { ChatRoom } from "./pages/ChatRoom";
+import { Admin } from "./pages/Admin";
 
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen">
-        <Navbar />
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-        <Footer />
-        <ChatBot />
-      </div>
+      <LanguageProvider>
+        <Router>
+          <div className="min-h-screen">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/chatroom" element={<ChatRoom />} />
+              <Route path="/admin" element={<Admin />} />
+            </Routes>
+          </div>
+        </Router>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }
