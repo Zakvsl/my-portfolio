@@ -43,7 +43,7 @@ export const About = () => {
               <div className="absolute -inset-4 bg-gradient-to-r from-secondary to-accent-orange rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-300" />
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-secondary shadow-2xl">
                 <img
-                  src="/public/image.png"
+                  src="/image.png"
                   alt="M Dimas Nurzaky"
                   className="w-full h-full object-cover"
                 />
